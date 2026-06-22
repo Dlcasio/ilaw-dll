@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { Toaster } from "sonner";
@@ -376,15 +376,15 @@ function DllTable({ input, dll }: { input: DllInput; dll: DllOutput }) {
             const showSection = r.section !== lastSection;
             lastSection = r.section;
             return (
-              <>
+              <Fragment key={i}>
                 {showSection && (
-                  <tr key={`sec-${i}`} className="bg-emerald-soft">
+                  <tr className="bg-emerald-soft">
                     <td colSpan={6} className="px-6 py-2 text-[10px] font-bold text-emerald-deep uppercase tracking-tight">
                       {r.section}
                     </td>
                   </tr>
                 )}
-                <tr key={i} className="align-top">
+                <tr className="align-top">
                   <td className="px-6 py-4 font-medium text-emerald-deep bg-cream-soft/40 w-48">
                     {r.label}
                   </td>
@@ -400,7 +400,7 @@ function DllTable({ input, dll }: { input: DllInput; dll: DllOutput }) {
                     ))
                   )}
                 </tr>
-              </>
+              </Fragment>
             );
           })}
 
