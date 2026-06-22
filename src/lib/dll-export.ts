@@ -106,7 +106,7 @@ export async function exportDocx(input: DllInput, dll: DllOutput) {
     sections: [
       {
         properties: {
-          page: { size: { width: 15840, height: 12240, orientation: "landscape" as never }, margin: { top: 720, bottom: 720, left: 720, right: 720 } },
+          page: { size: { width: 15840, height: 12240, orientation: PageOrientation.LANDSCAPE }, margin: { top: 720, bottom: 720, left: 720, right: 720 } },
         },
         children: [
           new Paragraph({
