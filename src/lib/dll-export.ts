@@ -200,13 +200,14 @@ export function exportPdf(input: DllInput, dll: DllOutput) {
 
   const drawCell = (text: string, x: number, yy: number, w: number, h: number, opts: { fill?: [number, number, number]; color?: [number, number, number]; bold?: boolean } = {}) => {
     if (opts.fill) {
-      pdf.setFillColor(...opts.fill);
+      pdf.setFillColor(opts.fill[0], opts.fill[1], opts.fill[2]);
       pdf.rect(x, yy, w, h, "F");
     }
     pdf.setDrawColor(201, 168, 76);
     pdf.rect(x, yy, w, h);
     pdf.setFont("helvetica", opts.bold ? "bold" : "normal");
-    pdf.setTextColor(...(opts.color ?? [20, 20, 20]));
+    const c = opts.color ?? [20, 20, 20];
+    pdf.setTextColor(c[0], c[1], c[2]);
     pdf.setFontSize(8);
     const lines = pdf.splitTextToSize(text || "—", w - 6);
     pdf.text(lines, x + 3, yy + 10);
